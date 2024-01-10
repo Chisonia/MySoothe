@@ -1,28 +1,37 @@
 package com.chinenyeakukalia.mysoothe.app.components.scrolling
 
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.chinenyeakukalia.mysoothe.R
+import com.chinenyeakukalia.mysoothe.app.components.favoriteCollectionsData
 import com.chinenyeakukalia.mysoothe.app.components.imagecardcollection.FavoriteCollectionCard
-import com.chinenyeakukalia.mysoothe.app.components.imagecardcollection.FavoriteCollectionCard1
-import com.chinenyeakukalia.mysoothe.app.components.imagecardcollection.FavoriteCollectionCard2
-import com.chinenyeakukalia.mysoothe.app.components.imagecardcollection.FavoriteCollectionCard3
-import com.chinenyeakukalia.mysoothe.app.components.imagecardcollection.FavoriteCollectionCard4
-import com.chinenyeakukalia.mysoothe.app.components.imagecardcollection.FavoriteCollectionCard5
 import com.chinenyeakukalia.mysoothe.ui.theme.MySootheTheme
 
 @Composable
-fun FavoriteCollectionGrid() {
-    Row(
+fun FavoriteCollectionGrid(
+    modifier: Modifier = Modifier
+) {
+    LazyHorizontalGrid(
+        rows = GridCells.Fixed(2),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier.height(168.dp)
+    ) {
+        items(favoriteCollectionsData) { item ->
+            FavoriteCollectionCard( item.text, item.drawable, Modifier.height(80.dp))
+        }
+    }
+}
+
+    /*Row(
         modifier = Modifier
             .horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -72,8 +81,8 @@ fun FavoriteCollectionGrid() {
                 modifier = Modifier.padding(8.dp)
             )
         }
-    }
-}
+    }*/
+
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
 fun FavoriteCollectionGridPreview(){

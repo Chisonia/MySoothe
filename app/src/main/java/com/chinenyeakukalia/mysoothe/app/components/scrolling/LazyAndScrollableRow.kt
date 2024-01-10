@@ -1,25 +1,29 @@
 package com.chinenyeakukalia.mysoothe.app.components.scrolling
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.chinenyeakukalia.mysoothe.R
+import com.chinenyeakukalia.mysoothe.app.components.alignYourBodyData
 import com.chinenyeakukalia.mysoothe.app.components.imagecollection.AlignYourBodyElement
-import com.chinenyeakukalia.mysoothe.app.components.imagecollection.AlignYourBodyElement1
-import com.chinenyeakukalia.mysoothe.app.components.imagecollection.AlignYourBodyElement2
-import com.chinenyeakukalia.mysoothe.app.components.imagecollection.AlignYourBodyElement3
-import com.chinenyeakukalia.mysoothe.app.components.imagecollection.AlignYourBodyElement4
-import com.chinenyeakukalia.mysoothe.app.components.imagecollection.AlignYourBodyElement5
 import com.chinenyeakukalia.mysoothe.ui.theme.MySootheTheme
 
 @Composable
-fun AlignYourBodyRow(
+fun AlignYourBodyRow(modifier: Modifier = Modifier
 ){
-    Row (
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        modifier = modifier
+    ){
+        items(alignYourBodyData){ item ->
+            AlignYourBodyElement(item.drawable, item.text)
+        }
+    }
+    /*Row (
         modifier = Modifier
             .horizontalScroll(rememberScrollState())
     ){
@@ -52,7 +56,7 @@ fun AlignYourBodyRow(
             text = R.string.pre_natal_yoga,
             modifier = Modifier.padding(8.dp)
         )
-    }
+    }*/
 }
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
